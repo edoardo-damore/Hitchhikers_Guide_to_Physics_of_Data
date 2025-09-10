@@ -1,19 +1,29 @@
-The following tutorial takes in consideration a virtual machine with Ubuntu 24.04 and an x86_64 architecture. 
-***DO NOT FOLLOW BLINDLY***
-Always consult [the official user guide](https://userguide.cloudveneto.it/en/latest/). 
-*DISCLAIMER*: this tutorial was written as I actually did the setup for a virtual machine. It worked fine for me, but it may contain errors and it may not suit your specific needs.
+# Booking and Setupping a CloudVeneto (GPU) virtual machine
 
-# 1. Book the GPU
+CloudVeneto offers great tools for Physics of Data students, but somethimes it can be tricky to properly setup stuff if you've never done it before.
+
+Always consult [the official user guide](https://userguide.cloudveneto.it/en/latest/). 
+
+*DISCLAIMER*: this tutorial was written as I actually did the setup for a virtual machine. 
+It worked fine for me, but it may contain errors and it may not suit your specific needs.
+Please do not follow blindly.
+
+## 1. Book the GPU
+
 You can do this in the [GPU booking calendar](https://cloudveneto.ict.unipd.it/dashboard/project/calendarpanel/).
 
-# 2. Launch instance
+## 2. Launch instance
 
-Launch an instance with a valid flavour (e.g. "cloudveneto.15cores90GB25G+500GB1T4")
+Launch an instance with a valid flavour (e.g. "cloudveneto.15cores90GB25G+500GB1T4").
 
-# 3. Reformat the ephemeral volume at /mnt
+If you do not know how to launch an istance check the guide at [section 4.1](https://userguide.cloudveneto.it/en/latest/AdminVMs-nocontext.html#creating-virtual-machines).
+
+## 3. Reformat the ephemeral volume at /mnt
+
 Follow the steps on the cloudveneto guide at [section 4.9.1](https://userguide.cloudveneto.it/en/latest/AdminVMs-nocontext.html#flavors-with-supplementary-ephemeral-disk).
 
-# 4. Install Cuda-toolkit and Cuda-drivers
+## 4. Install Cuda-toolkit and Cuda-drivers
+
 1. Update the system:
 ```bash
 sudo apt update && sudo apt upgrade -y
@@ -23,7 +33,8 @@ sudo reboot
 ```bash
 sudo apt install -y build-essential dkms linux-headers-$(uname -r)
 ```
-3. Go [here](https://developer.nvidia.com/cuda-downloads) and select the right options based on the vm. Then follow the instructions. 
+3. Go [here](https://developer.nvidia.com/cuda-downloads) and select the right options based on the vm. 
+Then follow the instructions. 
 	Here is an example for Ubuntu 24.04 with x86_64 architecture (as of 27/07/2025):
 	1. CUDA toolkit installation:
 	```bash
@@ -45,7 +56,7 @@ sudo reboot
 nvidia-smi
 ```
 
-# 5. (Optional) Install conda on the ephemeral volume
+## 5. (Optional) Install conda on the ephemeral volume
 1. Change the permissions for `/mnt`:
 ```bash
 chmod 777 /mnt
