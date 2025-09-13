@@ -97,7 +97,7 @@ conda activate ~/conda-envs/myenv
 ```
 Or even an alias if you feel fancy:
 ```bash
-echo "alias myenv-act='conda activate /mnt/miniconda3/conda-envs/myenv'" >> ~/.bash_aliases
+printf "\nalias myenv-act='conda activate /mnt/miniconda3/conda-envs/myenv'" >> ~/.bash_aliases
 source ~/.bashrc
 myenv-act # this will now activate myenv
 ```
